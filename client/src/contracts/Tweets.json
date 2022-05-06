@@ -1,0 +1,2359 @@
+{
+  "contractName": "Tweets",
+  "abi": [
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "name": "TweetDb",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "user",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "text",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "likes",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "txt",
+          "type": "string"
+        },
+        {
+          "internalType": "bool",
+          "name": "inc",
+          "type": "bool"
+        }
+      ],
+      "name": "TweetLiker",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "TweetText",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "ReplyText",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "username",
+          "type": "string"
+        }
+      ],
+      "name": "replies",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.5.16+commit.9c3226ce\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":true,\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"name\":\"TweetDb\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"user\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"text\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"likes\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"string\",\"name\":\"txt\",\"type\":\"string\"},{\"internalType\":\"bool\",\"name\":\"inc\",\"type\":\"bool\"}],\"name\":\"TweetLiker\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"string\",\"name\":\"TweetText\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"ReplyText\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"username\",\"type\":\"string\"}],\"name\":\"replies\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"project:/contracts/Tweets.sol\":\"Tweets\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/Tweets.sol\":{\"keccak256\":\"0x5a741f0bc053a6e8282cb68f772fb3938a61a424910263cb7ce974068a69dbf3\",\"urls\":[\"bzz-raw://58d08a7344776cbf520ec680deeda19d49c9ced76e4e438693940fe3e1f9eede\",\"dweb:/ipfs/QmVDKUUmCU3SAyabyAmFGt5NrpeswxfAnzAbTaR4viHyhf\"]}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b50610887806100206000396000f3fe608060405234801561001057600080fd5b50600436106100415760003560e01c80632814febe14610046578063bd27d74114610160578063fb004ffa14610227575b600080fd5b6100726004803603602081101561005c57600080fd5b8101908080359060200190929190505050610410565b604051808060200180602001848152602001838103835286818151815260200191508051906020019080838360005b838110156100bc5780820151818401526020810190506100a1565b50505050905090810190601f1680156100e95780820380516001836020036101000a031916815260200191505b50838103825285818151815260200191508051906020019080838360005b83811015610122578082015181840152602081019050610107565b50505050905090810190601f16801561014f5780820380516001836020036101000a031916815260200191505b509550505050505060405180910390f35b6102256004803603604081101561017657600080fd5b810190808035906020019064010000000081111561019357600080fd5b8201836020820111156101a557600080fd5b803590602001918460018302840111640100000000831117156101c757600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600081840152601f19601f82011690508083019250505050505050919291929080351515906020019092919050505061056a565b005b61040e6004803603606081101561023d57600080fd5b810190808035906020019064010000000081111561025a57600080fd5b82018360208201111561026c57600080fd5b8035906020019184600183028401116401000000008311171561028e57600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600081840152601f19601f820116905080830192505050505050509192919290803590602001906401000000008111156102f157600080fd5b82018360208201111561030357600080fd5b8035906020019184600183028401116401000000008311171561032557600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600081840152601f19601f8201169050808301925050505050505091929192908035906020019064010000000081111561038857600080fd5b82018360208201111561039a57600080fd5b803590602001918460018302840111640100000000831117156103bc57600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600081840152601f19601f8201169050808301925050505050505091929192905050506106a5565b005b6000602052806000526040600020600091509050806000018054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156104bc5780601f10610491576101008083540402835291602001916104bc565b820191906000526020600020905b81548152906001019060200180831161049f57829003601f168201915b505050505090806001018054600181600116156101000203166002900480601f01602080910402602001604051908101604052809291908181526020018280546001816001161561010002031660029004801561055a5780601f1061052f5761010080835404028352916020019161055a565b820191906000526020600020905b81548152906001019060200180831161053d57829003601f168201915b5050505050908060020154905083565b8061060a57600080836040516020018082805190602001908083835b602083106105a95780518252602082019150602081019050602083039250610586565b6001836020036101000a038019825116818451168082178552505050505050905001915050604051602081830303815290604052805190602001208152602001908152602001600020600201600081548092919060019003919050556106a0565b600080836040516020018082805190602001908083835b602083106106445780518252602082019150602081019050602083039250610621565b6001836020036101000a0380198251168184511680821785525050505050509050019150506040516020818303038152906040528051906020012081526020019081526020016000206002016000815480929190600101919050555b505050565b600080846040516020018082805190602001908083835b602083106106df57805182526020820191506020810190506020830392506106bc565b6001836020036101000a0380198251168184511680821785525050505050509050019150506040516020818303038152906040528051906020012081526020019081526020016000206003016040518060400160405280838152602001848152509080600181540180825580915050906001820390600052602060002090600202016000909192909190915060008201518160000190805190602001906107879291906107ad565b5060208201518160010190805190602001906107a49291906107ad565b50505050505050565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f106107ee57805160ff191683800117855561081c565b8280016001018555821561081c579182015b8281111561081b578251825591602001919060010190610800565b5b509050610829919061082d565b5090565b61084f91905b8082111561084b576000816000905550600101610833565b5090565b9056fea265627a7a723158207c85ea82f899b97f2b347d827a24670a018de55e7171bd8cd66bfd2e9dfae82864736f6c63430005100032",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106100415760003560e01c80632814febe14610046578063bd27d74114610160578063fb004ffa14610227575b600080fd5b6100726004803603602081101561005c57600080fd5b8101908080359060200190929190505050610410565b604051808060200180602001848152602001838103835286818151815260200191508051906020019080838360005b838110156100bc5780820151818401526020810190506100a1565b50505050905090810190601f1680156100e95780820380516001836020036101000a031916815260200191505b50838103825285818151815260200191508051906020019080838360005b83811015610122578082015181840152602081019050610107565b50505050905090810190601f16801561014f5780820380516001836020036101000a031916815260200191505b509550505050505060405180910390f35b6102256004803603604081101561017657600080fd5b810190808035906020019064010000000081111561019357600080fd5b8201836020820111156101a557600080fd5b803590602001918460018302840111640100000000831117156101c757600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600081840152601f19601f82011690508083019250505050505050919291929080351515906020019092919050505061056a565b005b61040e6004803603606081101561023d57600080fd5b810190808035906020019064010000000081111561025a57600080fd5b82018360208201111561026c57600080fd5b8035906020019184600183028401116401000000008311171561028e57600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600081840152601f19601f820116905080830192505050505050509192919290803590602001906401000000008111156102f157600080fd5b82018360208201111561030357600080fd5b8035906020019184600183028401116401000000008311171561032557600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600081840152601f19601f8201169050808301925050505050505091929192908035906020019064010000000081111561038857600080fd5b82018360208201111561039a57600080fd5b803590602001918460018302840111640100000000831117156103bc57600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600081840152601f19601f8201169050808301925050505050505091929192905050506106a5565b005b6000602052806000526040600020600091509050806000018054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156104bc5780601f10610491576101008083540402835291602001916104bc565b820191906000526020600020905b81548152906001019060200180831161049f57829003601f168201915b505050505090806001018054600181600116156101000203166002900480601f01602080910402602001604051908101604052809291908181526020018280546001816001161561010002031660029004801561055a5780601f1061052f5761010080835404028352916020019161055a565b820191906000526020600020905b81548152906001019060200180831161053d57829003601f168201915b5050505050908060020154905083565b8061060a57600080836040516020018082805190602001908083835b602083106105a95780518252602082019150602081019050602083039250610586565b6001836020036101000a038019825116818451168082178552505050505050905001915050604051602081830303815290604052805190602001208152602001908152602001600020600201600081548092919060019003919050556106a0565b600080836040516020018082805190602001908083835b602083106106445780518252602082019150602081019050602083039250610621565b6001836020036101000a0380198251168184511680821785525050505050509050019150506040516020818303038152906040528051906020012081526020019081526020016000206002016000815480929190600101919050555b505050565b600080846040516020018082805190602001908083835b602083106106df57805182526020820191506020810190506020830392506106bc565b6001836020036101000a0380198251168184511680821785525050505050509050019150506040516020818303038152906040528051906020012081526020019081526020016000206003016040518060400160405280838152602001848152509080600181540180825580915050906001820390600052602060002090600202016000909192909190915060008201518160000190805190602001906107879291906107ad565b5060208201518160010190805190602001906107a49291906107ad565b50505050505050565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f106107ee57805160ff191683800117855561081c565b8280016001018555821561081c579182015b8281111561081b578251825591602001919060010190610800565b5b509050610829919061082d565b5090565b61084f91905b8082111561084b576000816000905550600101610833565b5090565b9056fea265627a7a723158207c85ea82f899b97f2b347d827a24670a018de55e7171bd8cd66bfd2e9dfae82864736f6c63430005100032",
+  "sourceMap": "70:986:2:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;70:986:2;;;;;;;",
+  "deployedSourceMap": "70:986:2:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;70:986:2;;;;;;;;;;;;;;;;;;;;;;;;;;;;;621:38;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;621:38:2;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;23:1:-1;8:100;33:3;30:1;27:10;8:100;;;99:1;94:3;90:11;84:18;80:1;75:3;71:11;64:39;52:2;49:1;45:10;40:15;;8:100;;;12:14;621:38:2;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;23:1:-1;8:100;33:3;30:1;27:10;8:100;;;99:1;94:3;90:11;84:18;80:1;75:3;71:11;64:39;52:2;49:1;45:10;40:15;;8:100;;;12:14;621:38:2;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;666:178;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;666:178:2;;;;;;;;;;21:11:-1;8;5:28;2:2;;;46:1;43;36:12;2:2;666:178:2;;35:9:-1;28:4;12:14;8:25;5:40;2:2;;;58:1;55;48:12;2:2;666:178:2;;;;;;100:9:-1;95:1;81:12;77:20;67:8;63:35;60:50;39:11;25:12;22:29;11:107;8:2;;;131:1;128;121:12;8:2;666:178:2;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;30:3:-1;22:6;14;1:33;99:1;93:3;85:6;81:16;74:27;137:4;133:9;126:4;121:3;117:14;113:30;106:37;;169:3;161:6;157:16;147:26;;666:178:2;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;850:203;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;850:203:2;;;;;;;;;;21:11:-1;8;5:28;2:2;;;46:1;43;36:12;2:2;850:203:2;;35:9:-1;28:4;12:14;8:25;5:40;2:2;;;58:1;55;48:12;2:2;850:203:2;;;;;;100:9:-1;95:1;81:12;77:20;67:8;63:35;60:50;39:11;25:12;22:29;11:107;8:2;;;131:1;128;121:12;8:2;850:203:2;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;30:3:-1;22:6;14;1:33;99:1;93:3;85:6;81:16;74:27;137:4;133:9;126:4;121:3;117:14;113:30;106:37;;169:3;161:6;157:16;147:26;;850:203:2;;;;;;;;;;;;;;;;;21:11:-1;8;5:28;2:2;;;46:1;43;36:12;2:2;850:203:2;;35:9:-1;28:4;12:14;8:25;5:40;2:2;;;58:1;55;48:12;2:2;850:203:2;;;;;;100:9:-1;95:1;81:12;77:20;67:8;63:35;60:50;39:11;25:12;22:29;11:107;8:2;;;131:1;128;121:12;8:2;850:203:2;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;30:3:-1;22:6;14;1:33;99:1;93:3;85:6;81:16;74:27;137:4;133:9;126:4;121:3;117:14;113:30;106:37;;169:3;161:6;157:16;147:26;;850:203:2;;;;;;;;;;;;;;;;;21:11:-1;8;5:28;2:2;;;46:1;43;36:12;2:2;850:203:2;;35:9:-1;28:4;12:14;8:25;5:40;2:2;;;58:1;55;48:12;2:2;850:203:2;;;;;;100:9:-1;95:1;81:12;77:20;67:8;63:35;60:50;39:11;25:12;22:29;11:107;8:2;;;131:1;128;121:12;8:2;850:203:2;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;30:3:-1;22:6;14;1:33;99:1;93:3;85:6;81:16;74:27;137:4;133:9;126:4;121:3;117:14;113:30;106:37;;169:3;161:6;157:16;147:26;;850:203:2;;;;;;;;;;;;;;;:::i;:::-;;621:38;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o;666:178::-;733:3;:103;;787:7;:41;822:3;805:21;;;;;;;;;;;;;;;36:153:-1;66:2;61:3;58:11;36:153;;182:3;176:10;171:3;164:23;98:2;93:3;89:12;82:19;;123:2;118:3;114:12;107:19;;148:2;143:3;139:12;132:19;;36:153;;;274:1;267:3;263:2;259:12;254:3;250:22;246:30;315:4;311:9;305:3;299:10;295:26;356:4;350:3;344:10;340:21;389:7;380;377:20;372:3;365:33;3:399;;;805:21:2;;;;;;;;;;;49:4:-1;39:7;30;26:21;22:32;13:7;6:49;805:21:2;;;795:32;;;;;;787:41;;;;;;;;;;;:47;;;:49;;;;;;;;;;;;;733:103;;;737:7;:41;772:3;755:21;;;;;;;;;;;;;;;36:153:-1;66:2;61:3;58:11;36:153;;182:3;176:10;171:3;164:23;98:2;93:3;89:12;82:19;;123:2;118:3;114:12;107:19;;148:2;143:3;139:12;132:19;;36:153;;;274:1;267:3;263:2;259:12;254:3;250:22;246:30;315:4;311:9;305:3;299:10;295:26;356:4;350:3;344:10;340:21;389:7;380;377:20;372:3;365:33;3:399;;;755:21:2;;;;;;;;;;;49:4:-1;39:7;30;26:21;22:32;13:7;6:49;755:21:2;;;745:32;;;;;;737:41;;;;;;;;;;;:47;;;:49;;;;;;;;;;;;733:103;;666:178;;:::o;850:203::-;958:7;:47;993:9;976:27;;;;;;;;;;;;;;;36:153:-1;66:2;61:3;58:11;36:153;;182:3;176:10;171:3;164:23;98:2;93:3;89:12;82:19;;123:2;118:3;114:12;107:19;;148:2;143:3;139:12;132:19;;36:153;;;274:1;267:3;263:2;259:12;254:3;250:22;246:30;315:4;311:9;305:3;299:10;295:26;356:4;350:3;344:10;340:21;389:7;380;377:20;372:3;365:33;3:399;;;976:27:2;;;;;;;;;;;49:4:-1;39:7;30;26:21;22:32;13:7;6:49;976:27:2;;;966:38;;;;;;958:47;;;;;;;;;;;:55;;1019:25;;;;;;;;1025:8;1019:25;;;;1034:9;1019:25;;;958:87;;39:1:-1;33:3;27:10;23:18;57:10;52:3;45:23;79:10;72:17;;0:93;958:87:2;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;850:203;;;:::o;70:986::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;:::o;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o",
+  "source": "// SPDX-License-Identifier: MIT\r\npragma solidity >=0.4.21 <8.10.0;\r\n\r\ncontract Tweets{\r\n    /* constructor(string memory txt, string memory username){\r\n        bytes32 HashCode = keccak256(abi.encodePacked(txt));\r\n        tweet memory temp;\r\n        temp.text = txt;\r\n        temp.user = username;\r\n        temp.likes = 0;\r\n        TweetDb[HashCode] = temp;\r\n    } */\r\n    struct tweet{\r\n        string user;\r\n        string text;\r\n        uint likes;\r\n        reply[] replies;\r\n        // mapping(bytes32=>reply);\r\n    }\r\n    struct reply{\r\n        string user;\r\n        string text;\r\n        // uint likes;\r\n    }\r\n    mapping(bytes32=>tweet) public TweetDb;\r\n    function TweetLiker(string memory txt, bool inc) public {\r\n        inc?TweetDb[keccak256(abi.encodePacked(txt))].likes++:TweetDb[keccak256(abi.encodePacked(txt))].likes--;\r\n    }\r\n    function replies(string memory TweetText, string memory ReplyText, string memory username) public{\r\n        TweetDb[keccak256(abi.encodePacked(TweetText))].replies.push(reply(username,ReplyText));\r\n    }\r\n}",
+  "sourcePath": "F:\\twitter\\contracts\\Tweets.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/Tweets.sol",
+    "exportedSymbols": {
+      "Tweets": [
+        138
+      ]
+    },
+    "id": 139,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 61,
+        "literals": [
+          "solidity",
+          ">=",
+          "0.4",
+          ".21",
+          "<",
+          "8.10",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "33:33:2"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 138,
+        "linearizedBaseContracts": [
+          138
+        ],
+        "name": "Tweets",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "Tweets.tweet",
+            "id": 71,
+            "members": [
+              {
+                "constant": false,
+                "id": 63,
+                "name": "user",
+                "nodeType": "VariableDeclaration",
+                "scope": 71,
+                "src": "396:11:2",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 62,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "396:6:2",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 65,
+                "name": "text",
+                "nodeType": "VariableDeclaration",
+                "scope": 71,
+                "src": "418:11:2",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 64,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "418:6:2",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 67,
+                "name": "likes",
+                "nodeType": "VariableDeclaration",
+                "scope": 71,
+                "src": "440:10:2",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 66,
+                  "name": "uint",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "440:4:2",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 70,
+                "name": "replies",
+                "nodeType": "VariableDeclaration",
+                "scope": 71,
+                "src": "461:15:2",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_array$_t_struct$_reply_$76_storage_$dyn_storage_ptr",
+                  "typeString": "struct Tweets.reply[]"
+                },
+                "typeName": {
+                  "baseType": {
+                    "contractScope": null,
+                    "id": 68,
+                    "name": "reply",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 76,
+                    "src": "461:5:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_reply_$76_storage_ptr",
+                      "typeString": "struct Tweets.reply"
+                    }
+                  },
+                  "id": 69,
+                  "length": null,
+                  "nodeType": "ArrayTypeName",
+                  "src": "461:7:2",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_struct$_reply_$76_storage_$dyn_storage_ptr",
+                    "typeString": "struct Tweets.reply[]"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "tweet",
+            "nodeType": "StructDefinition",
+            "scope": 138,
+            "src": "373:148:2",
+            "visibility": "public"
+          },
+          {
+            "canonicalName": "Tweets.reply",
+            "id": 76,
+            "members": [
+              {
+                "constant": false,
+                "id": 73,
+                "name": "user",
+                "nodeType": "VariableDeclaration",
+                "scope": 76,
+                "src": "550:11:2",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 72,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "550:6:2",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 75,
+                "name": "text",
+                "nodeType": "VariableDeclaration",
+                "scope": 76,
+                "src": "572:11:2",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 74,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "572:6:2",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "reply",
+            "nodeType": "StructDefinition",
+            "scope": 138,
+            "src": "527:88:2",
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 80,
+            "name": "TweetDb",
+            "nodeType": "VariableDeclaration",
+            "scope": 138,
+            "src": "621:38:2",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_bytes32_$_t_struct$_tweet_$71_storage_$",
+              "typeString": "mapping(bytes32 => struct Tweets.tweet)"
+            },
+            "typeName": {
+              "id": 79,
+              "keyType": {
+                "id": 77,
+                "name": "bytes32",
+                "nodeType": "ElementaryTypeName",
+                "src": "629:7:2",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bytes32",
+                  "typeString": "bytes32"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "621:23:2",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_bytes32_$_t_struct$_tweet_$71_storage_$",
+                "typeString": "mapping(bytes32 => struct Tweets.tweet)"
+              },
+              "valueType": {
+                "contractScope": null,
+                "id": 78,
+                "name": "tweet",
+                "nodeType": "UserDefinedTypeName",
+                "referencedDeclaration": 71,
+                "src": "638:5:2",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_struct$_tweet_$71_storage_ptr",
+                  "typeString": "struct Tweets.tweet"
+                }
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 110,
+              "nodeType": "Block",
+              "src": "722:122:2",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "condition": {
+                      "argumentTypes": null,
+                      "id": 87,
+                      "name": "inc",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 84,
+                      "src": "733:3:2",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bool",
+                        "typeString": "bool"
+                      }
+                    },
+                    "falseExpression": {
+                      "argumentTypes": null,
+                      "id": 107,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "nodeType": "UnaryOperation",
+                      "operator": "--",
+                      "prefix": false,
+                      "src": "787:49:2",
+                      "subExpression": {
+                        "argumentTypes": null,
+                        "expression": {
+                          "argumentTypes": null,
+                          "baseExpression": {
+                            "argumentTypes": null,
+                            "id": 98,
+                            "name": "TweetDb",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 80,
+                            "src": "787:7:2",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_mapping$_t_bytes32_$_t_struct$_tweet_$71_storage_$",
+                              "typeString": "mapping(bytes32 => struct Tweets.tweet storage ref)"
+                            }
+                          },
+                          "id": 105,
+                          "indexExpression": {
+                            "argumentTypes": null,
+                            "arguments": [
+                              {
+                                "argumentTypes": null,
+                                "arguments": [
+                                  {
+                                    "argumentTypes": null,
+                                    "id": 102,
+                                    "name": "txt",
+                                    "nodeType": "Identifier",
+                                    "overloadedDeclarations": [],
+                                    "referencedDeclaration": 82,
+                                    "src": "822:3:2",
+                                    "typeDescriptions": {
+                                      "typeIdentifier": "t_string_memory_ptr",
+                                      "typeString": "string memory"
+                                    }
+                                  }
+                                ],
+                                "expression": {
+                                  "argumentTypes": [
+                                    {
+                                      "typeIdentifier": "t_string_memory_ptr",
+                                      "typeString": "string memory"
+                                    }
+                                  ],
+                                  "expression": {
+                                    "argumentTypes": null,
+                                    "id": 100,
+                                    "name": "abi",
+                                    "nodeType": "Identifier",
+                                    "overloadedDeclarations": [],
+                                    "referencedDeclaration": 140,
+                                    "src": "805:3:2",
+                                    "typeDescriptions": {
+                                      "typeIdentifier": "t_magic_abi",
+                                      "typeString": "abi"
+                                    }
+                                  },
+                                  "id": 101,
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": true,
+                                  "lValueRequested": false,
+                                  "memberName": "encodePacked",
+                                  "nodeType": "MemberAccess",
+                                  "referencedDeclaration": null,
+                                  "src": "805:16:2",
+                                  "typeDescriptions": {
+                                    "typeIdentifier": "t_function_abiencodepacked_pure$__$returns$_t_bytes_memory_ptr_$",
+                                    "typeString": "function () pure returns (bytes memory)"
+                                  }
+                                },
+                                "id": 103,
+                                "isConstant": false,
+                                "isLValue": false,
+                                "isPure": false,
+                                "kind": "functionCall",
+                                "lValueRequested": false,
+                                "names": [],
+                                "nodeType": "FunctionCall",
+                                "src": "805:21:2",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_bytes_memory_ptr",
+                                  "typeString": "bytes memory"
+                                }
+                              }
+                            ],
+                            "expression": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_bytes_memory_ptr",
+                                  "typeString": "bytes memory"
+                                }
+                              ],
+                              "id": 99,
+                              "name": "keccak256",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 147,
+                              "src": "795:9:2",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_function_keccak256_pure$_t_bytes_memory_ptr_$returns$_t_bytes32_$",
+                                "typeString": "function (bytes memory) pure returns (bytes32)"
+                              }
+                            },
+                            "id": 104,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": false,
+                            "kind": "functionCall",
+                            "lValueRequested": false,
+                            "names": [],
+                            "nodeType": "FunctionCall",
+                            "src": "795:32:2",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_bytes32",
+                              "typeString": "bytes32"
+                            }
+                          },
+                          "isConstant": false,
+                          "isLValue": true,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "nodeType": "IndexAccess",
+                          "src": "787:41:2",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_struct$_tweet_$71_storage",
+                            "typeString": "struct Tweets.tweet storage ref"
+                          }
+                        },
+                        "id": 106,
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": true,
+                        "memberName": "likes",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": 67,
+                        "src": "787:47:2",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "id": 108,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "Conditional",
+                    "src": "733:103:2",
+                    "trueExpression": {
+                      "argumentTypes": null,
+                      "id": 97,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "nodeType": "UnaryOperation",
+                      "operator": "++",
+                      "prefix": false,
+                      "src": "737:49:2",
+                      "subExpression": {
+                        "argumentTypes": null,
+                        "expression": {
+                          "argumentTypes": null,
+                          "baseExpression": {
+                            "argumentTypes": null,
+                            "id": 88,
+                            "name": "TweetDb",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 80,
+                            "src": "737:7:2",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_mapping$_t_bytes32_$_t_struct$_tweet_$71_storage_$",
+                              "typeString": "mapping(bytes32 => struct Tweets.tweet storage ref)"
+                            }
+                          },
+                          "id": 95,
+                          "indexExpression": {
+                            "argumentTypes": null,
+                            "arguments": [
+                              {
+                                "argumentTypes": null,
+                                "arguments": [
+                                  {
+                                    "argumentTypes": null,
+                                    "id": 92,
+                                    "name": "txt",
+                                    "nodeType": "Identifier",
+                                    "overloadedDeclarations": [],
+                                    "referencedDeclaration": 82,
+                                    "src": "772:3:2",
+                                    "typeDescriptions": {
+                                      "typeIdentifier": "t_string_memory_ptr",
+                                      "typeString": "string memory"
+                                    }
+                                  }
+                                ],
+                                "expression": {
+                                  "argumentTypes": [
+                                    {
+                                      "typeIdentifier": "t_string_memory_ptr",
+                                      "typeString": "string memory"
+                                    }
+                                  ],
+                                  "expression": {
+                                    "argumentTypes": null,
+                                    "id": 90,
+                                    "name": "abi",
+                                    "nodeType": "Identifier",
+                                    "overloadedDeclarations": [],
+                                    "referencedDeclaration": 140,
+                                    "src": "755:3:2",
+                                    "typeDescriptions": {
+                                      "typeIdentifier": "t_magic_abi",
+                                      "typeString": "abi"
+                                    }
+                                  },
+                                  "id": 91,
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": true,
+                                  "lValueRequested": false,
+                                  "memberName": "encodePacked",
+                                  "nodeType": "MemberAccess",
+                                  "referencedDeclaration": null,
+                                  "src": "755:16:2",
+                                  "typeDescriptions": {
+                                    "typeIdentifier": "t_function_abiencodepacked_pure$__$returns$_t_bytes_memory_ptr_$",
+                                    "typeString": "function () pure returns (bytes memory)"
+                                  }
+                                },
+                                "id": 93,
+                                "isConstant": false,
+                                "isLValue": false,
+                                "isPure": false,
+                                "kind": "functionCall",
+                                "lValueRequested": false,
+                                "names": [],
+                                "nodeType": "FunctionCall",
+                                "src": "755:21:2",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_bytes_memory_ptr",
+                                  "typeString": "bytes memory"
+                                }
+                              }
+                            ],
+                            "expression": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_bytes_memory_ptr",
+                                  "typeString": "bytes memory"
+                                }
+                              ],
+                              "id": 89,
+                              "name": "keccak256",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 147,
+                              "src": "745:9:2",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_function_keccak256_pure$_t_bytes_memory_ptr_$returns$_t_bytes32_$",
+                                "typeString": "function (bytes memory) pure returns (bytes32)"
+                              }
+                            },
+                            "id": 94,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": false,
+                            "kind": "functionCall",
+                            "lValueRequested": false,
+                            "names": [],
+                            "nodeType": "FunctionCall",
+                            "src": "745:32:2",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_bytes32",
+                              "typeString": "bytes32"
+                            }
+                          },
+                          "isConstant": false,
+                          "isLValue": true,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "nodeType": "IndexAccess",
+                          "src": "737:41:2",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_struct$_tweet_$71_storage",
+                            "typeString": "struct Tweets.tweet storage ref"
+                          }
+                        },
+                        "id": 96,
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": true,
+                        "memberName": "likes",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": 67,
+                        "src": "737:47:2",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 109,
+                  "nodeType": "ExpressionStatement",
+                  "src": "733:103:2"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 111,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "TweetLiker",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 85,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 82,
+                  "name": "txt",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 111,
+                  "src": "686:17:2",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 81,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "686:6:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 84,
+                  "name": "inc",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 111,
+                  "src": "705:8:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 83,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "705:4:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "685:29:2"
+            },
+            "returnParameters": {
+              "id": 86,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "722:0:2"
+            },
+            "scope": 138,
+            "src": "666:178:2",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 136,
+              "nodeType": "Block",
+              "src": "947:106:2",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "arguments": [
+                          {
+                            "argumentTypes": null,
+                            "id": 131,
+                            "name": "username",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 117,
+                            "src": "1025:8:2",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_string_memory_ptr",
+                              "typeString": "string memory"
+                            }
+                          },
+                          {
+                            "argumentTypes": null,
+                            "id": 132,
+                            "name": "ReplyText",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 115,
+                            "src": "1034:9:2",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_string_memory_ptr",
+                              "typeString": "string memory"
+                            }
+                          }
+                        ],
+                        "expression": {
+                          "argumentTypes": [
+                            {
+                              "typeIdentifier": "t_string_memory_ptr",
+                              "typeString": "string memory"
+                            },
+                            {
+                              "typeIdentifier": "t_string_memory_ptr",
+                              "typeString": "string memory"
+                            }
+                          ],
+                          "id": 130,
+                          "name": "reply",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 76,
+                          "src": "1019:5:2",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_type$_t_struct$_reply_$76_storage_ptr_$",
+                            "typeString": "type(struct Tweets.reply storage pointer)"
+                          }
+                        },
+                        "id": 133,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "kind": "structConstructorCall",
+                        "lValueRequested": false,
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "1019:25:2",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_reply_$76_memory",
+                          "typeString": "struct Tweets.reply memory"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_struct$_reply_$76_memory",
+                          "typeString": "struct Tweets.reply memory"
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": null,
+                        "expression": {
+                          "argumentTypes": null,
+                          "baseExpression": {
+                            "argumentTypes": null,
+                            "id": 120,
+                            "name": "TweetDb",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 80,
+                            "src": "958:7:2",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_mapping$_t_bytes32_$_t_struct$_tweet_$71_storage_$",
+                              "typeString": "mapping(bytes32 => struct Tweets.tweet storage ref)"
+                            }
+                          },
+                          "id": 127,
+                          "indexExpression": {
+                            "argumentTypes": null,
+                            "arguments": [
+                              {
+                                "argumentTypes": null,
+                                "arguments": [
+                                  {
+                                    "argumentTypes": null,
+                                    "id": 124,
+                                    "name": "TweetText",
+                                    "nodeType": "Identifier",
+                                    "overloadedDeclarations": [],
+                                    "referencedDeclaration": 113,
+                                    "src": "993:9:2",
+                                    "typeDescriptions": {
+                                      "typeIdentifier": "t_string_memory_ptr",
+                                      "typeString": "string memory"
+                                    }
+                                  }
+                                ],
+                                "expression": {
+                                  "argumentTypes": [
+                                    {
+                                      "typeIdentifier": "t_string_memory_ptr",
+                                      "typeString": "string memory"
+                                    }
+                                  ],
+                                  "expression": {
+                                    "argumentTypes": null,
+                                    "id": 122,
+                                    "name": "abi",
+                                    "nodeType": "Identifier",
+                                    "overloadedDeclarations": [],
+                                    "referencedDeclaration": 140,
+                                    "src": "976:3:2",
+                                    "typeDescriptions": {
+                                      "typeIdentifier": "t_magic_abi",
+                                      "typeString": "abi"
+                                    }
+                                  },
+                                  "id": 123,
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": true,
+                                  "lValueRequested": false,
+                                  "memberName": "encodePacked",
+                                  "nodeType": "MemberAccess",
+                                  "referencedDeclaration": null,
+                                  "src": "976:16:2",
+                                  "typeDescriptions": {
+                                    "typeIdentifier": "t_function_abiencodepacked_pure$__$returns$_t_bytes_memory_ptr_$",
+                                    "typeString": "function () pure returns (bytes memory)"
+                                  }
+                                },
+                                "id": 125,
+                                "isConstant": false,
+                                "isLValue": false,
+                                "isPure": false,
+                                "kind": "functionCall",
+                                "lValueRequested": false,
+                                "names": [],
+                                "nodeType": "FunctionCall",
+                                "src": "976:27:2",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_bytes_memory_ptr",
+                                  "typeString": "bytes memory"
+                                }
+                              }
+                            ],
+                            "expression": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_bytes_memory_ptr",
+                                  "typeString": "bytes memory"
+                                }
+                              ],
+                              "id": 121,
+                              "name": "keccak256",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 147,
+                              "src": "966:9:2",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_function_keccak256_pure$_t_bytes_memory_ptr_$returns$_t_bytes32_$",
+                                "typeString": "function (bytes memory) pure returns (bytes32)"
+                              }
+                            },
+                            "id": 126,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": false,
+                            "kind": "functionCall",
+                            "lValueRequested": false,
+                            "names": [],
+                            "nodeType": "FunctionCall",
+                            "src": "966:38:2",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_bytes32",
+                              "typeString": "bytes32"
+                            }
+                          },
+                          "isConstant": false,
+                          "isLValue": true,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "nodeType": "IndexAccess",
+                          "src": "958:47:2",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_struct$_tweet_$71_storage",
+                            "typeString": "struct Tweets.tweet storage ref"
+                          }
+                        },
+                        "id": 128,
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "replies",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": 70,
+                        "src": "958:55:2",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_array$_t_struct$_reply_$76_storage_$dyn_storage",
+                          "typeString": "struct Tweets.reply storage ref[] storage ref"
+                        }
+                      },
+                      "id": 129,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "push",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": null,
+                      "src": "958:60:2",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_arraypush_nonpayable$_t_struct$_reply_$76_storage_$returns$_t_uint256_$",
+                        "typeString": "function (struct Tweets.reply storage ref) returns (uint256)"
+                      }
+                    },
+                    "id": 134,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "958:87:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 135,
+                  "nodeType": "ExpressionStatement",
+                  "src": "958:87:2"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 137,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "replies",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 118,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 113,
+                  "name": "TweetText",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 137,
+                  "src": "867:23:2",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 112,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "867:6:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 115,
+                  "name": "ReplyText",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 137,
+                  "src": "892:23:2",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 114,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "892:6:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 117,
+                  "name": "username",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 137,
+                  "src": "917:22:2",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 116,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "917:6:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "866:74:2"
+            },
+            "returnParameters": {
+              "id": 119,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "947:0:2"
+            },
+            "scope": 138,
+            "src": "850:203:2",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 139,
+        "src": "70:986:2"
+      }
+    ],
+    "src": "33:1023:2"
+  },
+  "legacyAST": {
+    "attributes": {
+      "absolutePath": "project:/contracts/Tweets.sol",
+      "exportedSymbols": {
+        "Tweets": [
+          138
+        ]
+      }
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            ">=",
+            "0.4",
+            ".21",
+            "<",
+            "8.10",
+            ".0"
+          ]
+        },
+        "id": 61,
+        "name": "PragmaDirective",
+        "src": "33:33:2"
+      },
+      {
+        "attributes": {
+          "baseContracts": [
+            null
+          ],
+          "contractDependencies": [
+            null
+          ],
+          "contractKind": "contract",
+          "documentation": null,
+          "fullyImplemented": true,
+          "linearizedBaseContracts": [
+            138
+          ],
+          "name": "Tweets",
+          "scope": 139
+        },
+        "children": [
+          {
+            "attributes": {
+              "canonicalName": "Tweets.tweet",
+              "name": "tweet",
+              "scope": 138,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "constant": false,
+                  "name": "user",
+                  "scope": 71,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "string",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "string",
+                      "type": "string"
+                    },
+                    "id": 62,
+                    "name": "ElementaryTypeName",
+                    "src": "396:6:2"
+                  }
+                ],
+                "id": 63,
+                "name": "VariableDeclaration",
+                "src": "396:11:2"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "name": "text",
+                  "scope": 71,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "string",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "string",
+                      "type": "string"
+                    },
+                    "id": 64,
+                    "name": "ElementaryTypeName",
+                    "src": "418:6:2"
+                  }
+                ],
+                "id": 65,
+                "name": "VariableDeclaration",
+                "src": "418:11:2"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "name": "likes",
+                  "scope": 71,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "uint256",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "uint",
+                      "type": "uint256"
+                    },
+                    "id": 66,
+                    "name": "ElementaryTypeName",
+                    "src": "440:4:2"
+                  }
+                ],
+                "id": 67,
+                "name": "VariableDeclaration",
+                "src": "440:10:2"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "name": "replies",
+                  "scope": 71,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "struct Tweets.reply[]",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "length": null,
+                      "type": "struct Tweets.reply[]"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "contractScope": null,
+                          "name": "reply",
+                          "referencedDeclaration": 76,
+                          "type": "struct Tweets.reply"
+                        },
+                        "id": 68,
+                        "name": "UserDefinedTypeName",
+                        "src": "461:5:2"
+                      }
+                    ],
+                    "id": 69,
+                    "name": "ArrayTypeName",
+                    "src": "461:7:2"
+                  }
+                ],
+                "id": 70,
+                "name": "VariableDeclaration",
+                "src": "461:15:2"
+              }
+            ],
+            "id": 71,
+            "name": "StructDefinition",
+            "src": "373:148:2"
+          },
+          {
+            "attributes": {
+              "canonicalName": "Tweets.reply",
+              "name": "reply",
+              "scope": 138,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "constant": false,
+                  "name": "user",
+                  "scope": 76,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "string",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "string",
+                      "type": "string"
+                    },
+                    "id": 72,
+                    "name": "ElementaryTypeName",
+                    "src": "550:6:2"
+                  }
+                ],
+                "id": 73,
+                "name": "VariableDeclaration",
+                "src": "550:11:2"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "name": "text",
+                  "scope": 76,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "string",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "string",
+                      "type": "string"
+                    },
+                    "id": 74,
+                    "name": "ElementaryTypeName",
+                    "src": "572:6:2"
+                  }
+                ],
+                "id": 75,
+                "name": "VariableDeclaration",
+                "src": "572:11:2"
+              }
+            ],
+            "id": 76,
+            "name": "StructDefinition",
+            "src": "527:88:2"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "name": "TweetDb",
+              "scope": 138,
+              "stateVariable": true,
+              "storageLocation": "default",
+              "type": "mapping(bytes32 => struct Tweets.tweet)",
+              "value": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "type": "mapping(bytes32 => struct Tweets.tweet)"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "bytes32",
+                      "type": "bytes32"
+                    },
+                    "id": 77,
+                    "name": "ElementaryTypeName",
+                    "src": "629:7:2"
+                  },
+                  {
+                    "attributes": {
+                      "contractScope": null,
+                      "name": "tweet",
+                      "referencedDeclaration": 71,
+                      "type": "struct Tweets.tweet"
+                    },
+                    "id": 78,
+                    "name": "UserDefinedTypeName",
+                    "src": "638:5:2"
+                  }
+                ],
+                "id": 79,
+                "name": "Mapping",
+                "src": "621:23:2"
+              }
+            ],
+            "id": 80,
+            "name": "VariableDeclaration",
+            "src": "621:38:2"
+          },
+          {
+            "attributes": {
+              "documentation": null,
+              "implemented": true,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "TweetLiker",
+              "scope": 138,
+              "stateMutability": "nonpayable",
+              "superFunction": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "txt",
+                      "scope": 111,
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "type": "string",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "string",
+                          "type": "string"
+                        },
+                        "id": 81,
+                        "name": "ElementaryTypeName",
+                        "src": "686:6:2"
+                      }
+                    ],
+                    "id": 82,
+                    "name": "VariableDeclaration",
+                    "src": "686:17:2"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "inc",
+                      "scope": 111,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bool",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bool",
+                          "type": "bool"
+                        },
+                        "id": 83,
+                        "name": "ElementaryTypeName",
+                        "src": "705:4:2"
+                      }
+                    ],
+                    "id": 84,
+                    "name": "VariableDeclaration",
+                    "src": "705:8:2"
+                  }
+                ],
+                "id": 85,
+                "name": "ParameterList",
+                "src": "685:29:2"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 86,
+                "name": "ParameterList",
+                "src": "722:0:2"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "type": "uint256"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 84,
+                              "type": "bool",
+                              "value": "inc"
+                            },
+                            "id": 87,
+                            "name": "Identifier",
+                            "src": "733:3:2"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "operator": "++",
+                              "prefix": false,
+                              "type": "uint256"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "isConstant": false,
+                                  "isLValue": true,
+                                  "isPure": false,
+                                  "lValueRequested": true,
+                                  "member_name": "likes",
+                                  "referencedDeclaration": 67,
+                                  "type": "uint256"
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "isConstant": false,
+                                      "isLValue": true,
+                                      "isPure": false,
+                                      "lValueRequested": false,
+                                      "type": "struct Tweets.tweet storage ref"
+                                    },
+                                    "children": [
+                                      {
+                                        "attributes": {
+                                          "argumentTypes": null,
+                                          "overloadedDeclarations": [
+                                            null
+                                          ],
+                                          "referencedDeclaration": 80,
+                                          "type": "mapping(bytes32 => struct Tweets.tweet storage ref)",
+                                          "value": "TweetDb"
+                                        },
+                                        "id": 88,
+                                        "name": "Identifier",
+                                        "src": "737:7:2"
+                                      },
+                                      {
+                                        "attributes": {
+                                          "argumentTypes": null,
+                                          "isConstant": false,
+                                          "isLValue": false,
+                                          "isPure": false,
+                                          "isStructConstructorCall": false,
+                                          "lValueRequested": false,
+                                          "names": [
+                                            null
+                                          ],
+                                          "type": "bytes32",
+                                          "type_conversion": false
+                                        },
+                                        "children": [
+                                          {
+                                            "attributes": {
+                                              "argumentTypes": [
+                                                {
+                                                  "typeIdentifier": "t_bytes_memory_ptr",
+                                                  "typeString": "bytes memory"
+                                                }
+                                              ],
+                                              "overloadedDeclarations": [
+                                                null
+                                              ],
+                                              "referencedDeclaration": 147,
+                                              "type": "function (bytes memory) pure returns (bytes32)",
+                                              "value": "keccak256"
+                                            },
+                                            "id": 89,
+                                            "name": "Identifier",
+                                            "src": "745:9:2"
+                                          },
+                                          {
+                                            "attributes": {
+                                              "argumentTypes": null,
+                                              "isConstant": false,
+                                              "isLValue": false,
+                                              "isPure": false,
+                                              "isStructConstructorCall": false,
+                                              "lValueRequested": false,
+                                              "names": [
+                                                null
+                                              ],
+                                              "type": "bytes memory",
+                                              "type_conversion": false
+                                            },
+                                            "children": [
+                                              {
+                                                "attributes": {
+                                                  "argumentTypes": [
+                                                    {
+                                                      "typeIdentifier": "t_string_memory_ptr",
+                                                      "typeString": "string memory"
+                                                    }
+                                                  ],
+                                                  "isConstant": false,
+                                                  "isLValue": false,
+                                                  "isPure": true,
+                                                  "lValueRequested": false,
+                                                  "member_name": "encodePacked",
+                                                  "referencedDeclaration": null,
+                                                  "type": "function () pure returns (bytes memory)"
+                                                },
+                                                "children": [
+                                                  {
+                                                    "attributes": {
+                                                      "argumentTypes": null,
+                                                      "overloadedDeclarations": [
+                                                        null
+                                                      ],
+                                                      "referencedDeclaration": 140,
+                                                      "type": "abi",
+                                                      "value": "abi"
+                                                    },
+                                                    "id": 90,
+                                                    "name": "Identifier",
+                                                    "src": "755:3:2"
+                                                  }
+                                                ],
+                                                "id": 91,
+                                                "name": "MemberAccess",
+                                                "src": "755:16:2"
+                                              },
+                                              {
+                                                "attributes": {
+                                                  "argumentTypes": null,
+                                                  "overloadedDeclarations": [
+                                                    null
+                                                  ],
+                                                  "referencedDeclaration": 82,
+                                                  "type": "string memory",
+                                                  "value": "txt"
+                                                },
+                                                "id": 92,
+                                                "name": "Identifier",
+                                                "src": "772:3:2"
+                                              }
+                                            ],
+                                            "id": 93,
+                                            "name": "FunctionCall",
+                                            "src": "755:21:2"
+                                          }
+                                        ],
+                                        "id": 94,
+                                        "name": "FunctionCall",
+                                        "src": "745:32:2"
+                                      }
+                                    ],
+                                    "id": 95,
+                                    "name": "IndexAccess",
+                                    "src": "737:41:2"
+                                  }
+                                ],
+                                "id": 96,
+                                "name": "MemberAccess",
+                                "src": "737:47:2"
+                              }
+                            ],
+                            "id": 97,
+                            "name": "UnaryOperation",
+                            "src": "737:49:2"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "operator": "--",
+                              "prefix": false,
+                              "type": "uint256"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "isConstant": false,
+                                  "isLValue": true,
+                                  "isPure": false,
+                                  "lValueRequested": true,
+                                  "member_name": "likes",
+                                  "referencedDeclaration": 67,
+                                  "type": "uint256"
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "isConstant": false,
+                                      "isLValue": true,
+                                      "isPure": false,
+                                      "lValueRequested": false,
+                                      "type": "struct Tweets.tweet storage ref"
+                                    },
+                                    "children": [
+                                      {
+                                        "attributes": {
+                                          "argumentTypes": null,
+                                          "overloadedDeclarations": [
+                                            null
+                                          ],
+                                          "referencedDeclaration": 80,
+                                          "type": "mapping(bytes32 => struct Tweets.tweet storage ref)",
+                                          "value": "TweetDb"
+                                        },
+                                        "id": 98,
+                                        "name": "Identifier",
+                                        "src": "787:7:2"
+                                      },
+                                      {
+                                        "attributes": {
+                                          "argumentTypes": null,
+                                          "isConstant": false,
+                                          "isLValue": false,
+                                          "isPure": false,
+                                          "isStructConstructorCall": false,
+                                          "lValueRequested": false,
+                                          "names": [
+                                            null
+                                          ],
+                                          "type": "bytes32",
+                                          "type_conversion": false
+                                        },
+                                        "children": [
+                                          {
+                                            "attributes": {
+                                              "argumentTypes": [
+                                                {
+                                                  "typeIdentifier": "t_bytes_memory_ptr",
+                                                  "typeString": "bytes memory"
+                                                }
+                                              ],
+                                              "overloadedDeclarations": [
+                                                null
+                                              ],
+                                              "referencedDeclaration": 147,
+                                              "type": "function (bytes memory) pure returns (bytes32)",
+                                              "value": "keccak256"
+                                            },
+                                            "id": 99,
+                                            "name": "Identifier",
+                                            "src": "795:9:2"
+                                          },
+                                          {
+                                            "attributes": {
+                                              "argumentTypes": null,
+                                              "isConstant": false,
+                                              "isLValue": false,
+                                              "isPure": false,
+                                              "isStructConstructorCall": false,
+                                              "lValueRequested": false,
+                                              "names": [
+                                                null
+                                              ],
+                                              "type": "bytes memory",
+                                              "type_conversion": false
+                                            },
+                                            "children": [
+                                              {
+                                                "attributes": {
+                                                  "argumentTypes": [
+                                                    {
+                                                      "typeIdentifier": "t_string_memory_ptr",
+                                                      "typeString": "string memory"
+                                                    }
+                                                  ],
+                                                  "isConstant": false,
+                                                  "isLValue": false,
+                                                  "isPure": true,
+                                                  "lValueRequested": false,
+                                                  "member_name": "encodePacked",
+                                                  "referencedDeclaration": null,
+                                                  "type": "function () pure returns (bytes memory)"
+                                                },
+                                                "children": [
+                                                  {
+                                                    "attributes": {
+                                                      "argumentTypes": null,
+                                                      "overloadedDeclarations": [
+                                                        null
+                                                      ],
+                                                      "referencedDeclaration": 140,
+                                                      "type": "abi",
+                                                      "value": "abi"
+                                                    },
+                                                    "id": 100,
+                                                    "name": "Identifier",
+                                                    "src": "805:3:2"
+                                                  }
+                                                ],
+                                                "id": 101,
+                                                "name": "MemberAccess",
+                                                "src": "805:16:2"
+                                              },
+                                              {
+                                                "attributes": {
+                                                  "argumentTypes": null,
+                                                  "overloadedDeclarations": [
+                                                    null
+                                                  ],
+                                                  "referencedDeclaration": 82,
+                                                  "type": "string memory",
+                                                  "value": "txt"
+                                                },
+                                                "id": 102,
+                                                "name": "Identifier",
+                                                "src": "822:3:2"
+                                              }
+                                            ],
+                                            "id": 103,
+                                            "name": "FunctionCall",
+                                            "src": "805:21:2"
+                                          }
+                                        ],
+                                        "id": 104,
+                                        "name": "FunctionCall",
+                                        "src": "795:32:2"
+                                      }
+                                    ],
+                                    "id": 105,
+                                    "name": "IndexAccess",
+                                    "src": "787:41:2"
+                                  }
+                                ],
+                                "id": 106,
+                                "name": "MemberAccess",
+                                "src": "787:47:2"
+                              }
+                            ],
+                            "id": 107,
+                            "name": "UnaryOperation",
+                            "src": "787:49:2"
+                          }
+                        ],
+                        "id": 108,
+                        "name": "Conditional",
+                        "src": "733:103:2"
+                      }
+                    ],
+                    "id": 109,
+                    "name": "ExpressionStatement",
+                    "src": "733:103:2"
+                  }
+                ],
+                "id": 110,
+                "name": "Block",
+                "src": "722:122:2"
+              }
+            ],
+            "id": 111,
+            "name": "FunctionDefinition",
+            "src": "666:178:2"
+          },
+          {
+            "attributes": {
+              "documentation": null,
+              "implemented": true,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "replies",
+              "scope": 138,
+              "stateMutability": "nonpayable",
+              "superFunction": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "TweetText",
+                      "scope": 137,
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "type": "string",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "string",
+                          "type": "string"
+                        },
+                        "id": 112,
+                        "name": "ElementaryTypeName",
+                        "src": "867:6:2"
+                      }
+                    ],
+                    "id": 113,
+                    "name": "VariableDeclaration",
+                    "src": "867:23:2"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "ReplyText",
+                      "scope": 137,
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "type": "string",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "string",
+                          "type": "string"
+                        },
+                        "id": 114,
+                        "name": "ElementaryTypeName",
+                        "src": "892:6:2"
+                      }
+                    ],
+                    "id": 115,
+                    "name": "VariableDeclaration",
+                    "src": "892:23:2"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "username",
+                      "scope": 137,
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "type": "string",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "string",
+                          "type": "string"
+                        },
+                        "id": 116,
+                        "name": "ElementaryTypeName",
+                        "src": "917:6:2"
+                      }
+                    ],
+                    "id": 117,
+                    "name": "VariableDeclaration",
+                    "src": "917:22:2"
+                  }
+                ],
+                "id": 118,
+                "name": "ParameterList",
+                "src": "866:74:2"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 119,
+                "name": "ParameterList",
+                "src": "947:0:2"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "type": "uint256",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_struct$_reply_$76_memory",
+                                  "typeString": "struct Tweets.reply memory"
+                                }
+                              ],
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "member_name": "push",
+                              "referencedDeclaration": null,
+                              "type": "function (struct Tweets.reply storage ref) returns (uint256)"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "isConstant": false,
+                                  "isLValue": true,
+                                  "isPure": false,
+                                  "lValueRequested": false,
+                                  "member_name": "replies",
+                                  "referencedDeclaration": 70,
+                                  "type": "struct Tweets.reply storage ref[] storage ref"
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "isConstant": false,
+                                      "isLValue": true,
+                                      "isPure": false,
+                                      "lValueRequested": false,
+                                      "type": "struct Tweets.tweet storage ref"
+                                    },
+                                    "children": [
+                                      {
+                                        "attributes": {
+                                          "argumentTypes": null,
+                                          "overloadedDeclarations": [
+                                            null
+                                          ],
+                                          "referencedDeclaration": 80,
+                                          "type": "mapping(bytes32 => struct Tweets.tweet storage ref)",
+                                          "value": "TweetDb"
+                                        },
+                                        "id": 120,
+                                        "name": "Identifier",
+                                        "src": "958:7:2"
+                                      },
+                                      {
+                                        "attributes": {
+                                          "argumentTypes": null,
+                                          "isConstant": false,
+                                          "isLValue": false,
+                                          "isPure": false,
+                                          "isStructConstructorCall": false,
+                                          "lValueRequested": false,
+                                          "names": [
+                                            null
+                                          ],
+                                          "type": "bytes32",
+                                          "type_conversion": false
+                                        },
+                                        "children": [
+                                          {
+                                            "attributes": {
+                                              "argumentTypes": [
+                                                {
+                                                  "typeIdentifier": "t_bytes_memory_ptr",
+                                                  "typeString": "bytes memory"
+                                                }
+                                              ],
+                                              "overloadedDeclarations": [
+                                                null
+                                              ],
+                                              "referencedDeclaration": 147,
+                                              "type": "function (bytes memory) pure returns (bytes32)",
+                                              "value": "keccak256"
+                                            },
+                                            "id": 121,
+                                            "name": "Identifier",
+                                            "src": "966:9:2"
+                                          },
+                                          {
+                                            "attributes": {
+                                              "argumentTypes": null,
+                                              "isConstant": false,
+                                              "isLValue": false,
+                                              "isPure": false,
+                                              "isStructConstructorCall": false,
+                                              "lValueRequested": false,
+                                              "names": [
+                                                null
+                                              ],
+                                              "type": "bytes memory",
+                                              "type_conversion": false
+                                            },
+                                            "children": [
+                                              {
+                                                "attributes": {
+                                                  "argumentTypes": [
+                                                    {
+                                                      "typeIdentifier": "t_string_memory_ptr",
+                                                      "typeString": "string memory"
+                                                    }
+                                                  ],
+                                                  "isConstant": false,
+                                                  "isLValue": false,
+                                                  "isPure": true,
+                                                  "lValueRequested": false,
+                                                  "member_name": "encodePacked",
+                                                  "referencedDeclaration": null,
+                                                  "type": "function () pure returns (bytes memory)"
+                                                },
+                                                "children": [
+                                                  {
+                                                    "attributes": {
+                                                      "argumentTypes": null,
+                                                      "overloadedDeclarations": [
+                                                        null
+                                                      ],
+                                                      "referencedDeclaration": 140,
+                                                      "type": "abi",
+                                                      "value": "abi"
+                                                    },
+                                                    "id": 122,
+                                                    "name": "Identifier",
+                                                    "src": "976:3:2"
+                                                  }
+                                                ],
+                                                "id": 123,
+                                                "name": "MemberAccess",
+                                                "src": "976:16:2"
+                                              },
+                                              {
+                                                "attributes": {
+                                                  "argumentTypes": null,
+                                                  "overloadedDeclarations": [
+                                                    null
+                                                  ],
+                                                  "referencedDeclaration": 113,
+                                                  "type": "string memory",
+                                                  "value": "TweetText"
+                                                },
+                                                "id": 124,
+                                                "name": "Identifier",
+                                                "src": "993:9:2"
+                                              }
+                                            ],
+                                            "id": 125,
+                                            "name": "FunctionCall",
+                                            "src": "976:27:2"
+                                          }
+                                        ],
+                                        "id": 126,
+                                        "name": "FunctionCall",
+                                        "src": "966:38:2"
+                                      }
+                                    ],
+                                    "id": 127,
+                                    "name": "IndexAccess",
+                                    "src": "958:47:2"
+                                  }
+                                ],
+                                "id": 128,
+                                "name": "MemberAccess",
+                                "src": "958:55:2"
+                              }
+                            ],
+                            "id": 129,
+                            "name": "MemberAccess",
+                            "src": "958:60:2"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "isStructConstructorCall": true,
+                              "lValueRequested": false,
+                              "names": [
+                                null
+                              ],
+                              "type": "struct Tweets.reply memory",
+                              "type_conversion": false
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": [
+                                    {
+                                      "typeIdentifier": "t_string_memory_ptr",
+                                      "typeString": "string memory"
+                                    },
+                                    {
+                                      "typeIdentifier": "t_string_memory_ptr",
+                                      "typeString": "string memory"
+                                    }
+                                  ],
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 76,
+                                  "type": "type(struct Tweets.reply storage pointer)",
+                                  "value": "reply"
+                                },
+                                "id": 130,
+                                "name": "Identifier",
+                                "src": "1019:5:2"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 117,
+                                  "type": "string memory",
+                                  "value": "username"
+                                },
+                                "id": 131,
+                                "name": "Identifier",
+                                "src": "1025:8:2"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 115,
+                                  "type": "string memory",
+                                  "value": "ReplyText"
+                                },
+                                "id": 132,
+                                "name": "Identifier",
+                                "src": "1034:9:2"
+                              }
+                            ],
+                            "id": 133,
+                            "name": "FunctionCall",
+                            "src": "1019:25:2"
+                          }
+                        ],
+                        "id": 134,
+                        "name": "FunctionCall",
+                        "src": "958:87:2"
+                      }
+                    ],
+                    "id": 135,
+                    "name": "ExpressionStatement",
+                    "src": "958:87:2"
+                  }
+                ],
+                "id": 136,
+                "name": "Block",
+                "src": "947:106:2"
+              }
+            ],
+            "id": 137,
+            "name": "FunctionDefinition",
+            "src": "850:203:2"
+          }
+        ],
+        "id": 138,
+        "name": "ContractDefinition",
+        "src": "70:986:2"
+      }
+    ],
+    "id": 139,
+    "name": "SourceUnit",
+    "src": "33:1023:2"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.16+commit.9c3226ce.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.4",
+  "updatedAt": "2022-05-04T06:55:31.772Z",
+  "devdoc": {
+    "methods": {}
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}
