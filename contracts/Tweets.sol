@@ -2,7 +2,15 @@
 pragma solidity >=0.4.21 <8.10.0;
 
 contract Tweets {
-    struct tweet {
+    event log(bool flag);
+    function TweetVerify(string memory txt, uint likes, bytes32 HashCode) public{
+        if (keccak256(abi.encodePacked(txt,likes))==HashCode) {
+            emit log(true);
+        } else {
+            emit log(false);
+        }
+    }
+    /* struct tweet {
         string user;
         string text;
         uint256 likes;
@@ -41,7 +49,7 @@ contract Tweets {
         );
     }
 
-    /* function GetTweets() public view returns(tweet[] memory){
+    function GetTweets() public view returns(tweet[] memory){
 
     } */
 }

@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import placeholder from "./img/placeholder.jpeg"
+import placeholder from "./img/Portrait_Placeholder.png"
 import "./reply.scss"
 
 const Reply = props => {
     const [reply, SetReply] = useState({})
-    useEffect((props) => {
+    useEffect(() => {
         SetReply(props.reply)
     },[])
     return (
@@ -12,8 +12,8 @@ const Reply = props => {
             <div className="MainWrapper">
                 <img src={placeholder} alt="profile pic" />
                 <div className="ReplyBody">
-                    <h3>user 69<span className="handle">  @nice_user</span></h3>
-                    <p className="ReplyText">Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+                    <h3>{reply.user}<span className="handle">  @nice_user</span></h3>
+                    <p className="ReplyText">{reply.text}</p>
                 </div>
             </div> 
         </>
